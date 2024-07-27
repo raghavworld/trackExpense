@@ -2,13 +2,19 @@ const express = require('express');
 const userRouter  = require('./routes/userRouter');
 const mongoose  = require('mongoose');
 const errorHandler = require('./middlewares/Errorhandler');
+const categoryRouter = require('./routes/categoryRouter');
+const transactRouter = require('./routes/transactionRoutes');
 const app = express() 
 const PORT = process.env.PORT || 3000;
+const cors = require('cors')
 
 app.use(express.json())
+//!enable cors for all routes
+app.use(cors())
 //! import ROutes
 app.use('/',userRouter)
-
+app.use('/',categoryRouter)
+app.use('/',transactRouter)
 //! Error Handler to show error in jsonFormat 
 app.use(errorHandler)
 // app.use(isAuth);

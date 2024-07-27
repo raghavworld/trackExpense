@@ -3,9 +3,7 @@ const usersControl =require('../controllers/usersCntrl')
 const userRouter = express.Router()
 const isAuth = require('../middlewares/isAuth')
 
-userRouter.get('/',async(req, res)=>{
-    res.json({message:'HomePage for backend users'}) 
-           })
+
 
 userRouter.post('/api/v1/users/register', usersControl.register)
 userRouter.post('/api/v1/users/login', usersControl.login)
