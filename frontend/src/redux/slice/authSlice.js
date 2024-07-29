@@ -11,7 +11,6 @@ reducers:{
         state.user=action.payload
     },
     logoutAction:(state,action)=>{
-     
         state.user=null
     }
 

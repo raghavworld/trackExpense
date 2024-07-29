@@ -11,29 +11,54 @@ import { SiDatabricks } from "react-icons/si";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import AlertMessage from "../../Templates/Alert/AlertMessage";
+import createCategory from '../../services/category/catgeoryServices'
 const validationSchema = Yup.object({
   name: Yup.string()
     .required("Category name is required")
-    .oneOf(["income", "expense"]),
-  type: Yup.string()
-    .required("Category type is required")
-    .oneOf(["income", "expense"]),
+    .min(3, "Category name is too short"),
+ type:Yup.string()
+ .required("Category type is required")
+ .oneOf(['income','expense'],"Category type is invalid")
 });
 
 const AddCategory = () => {
+
+  const navigate = useNavigate();
+  const { isError, isPending, isSuccess, error, mutateAsync } = useMutation({
+    mutationKey: ["addCategory"],
+    mutationFn: createCategory,
+  });
   const formik = useFormik({
     initialValues: {
       type: "",
       name: "",
     },
+    validationSchema,
     onSubmit: (values) => {
-      console.log(values);
+      const response = mutateAsync(values).then((data) => {
+        return data
+      }).catch(e=>console.log('errorMut:',e));
+   
+    //  mutateAsync(values).then((data) => {
+    //     console.log(isSuccess);
+    //     isSuccess && setTimeout(() => navigate("/categories"),1000);
+       
+    //     isError && console.log('Error:',error);
+
+    //   }).catch(e=>{
+     
+    //     throw new Error(e)
+    //   })
     },
   });
+        isSuccess && setTimeout(() => navigate("/categories"),1500);
+       
+        isError && console.log('Error:',error);
+
 
   return (
     <form
-      onSubmit={formik.handleSubmit} 
+      onSubmit={formik.handleSubmit}
       className="max-w-lg mx-auto my-10 bg-white p-6 rounded-lg shadow-lg space-y-6"
     >
       <div className="text-center">
@@ -43,7 +68,7 @@ const AddCategory = () => {
         <p className="text-gray-600">Fill in the details below.</p>
       </div>
       {/* Display alert message */}
-      {/* {isError && (
+      {isError && (
         <AlertMessage
           type="error"
           message={
@@ -51,13 +76,13 @@ const AddCategory = () => {
             "Something happened please try again later"
           }
         />
-      )} */}
-      {/* {isSuccess && (
+      )}
+      {isSuccess && (
         <AlertMessage
           type="success"
           message="Category added successfully, redirecting..."
         />
-      )} */}
+      )}
       {/* Category Type */}
       <div className="space-y-2">
         <label

@@ -8,6 +8,7 @@ const app = express()
 const PORT = process.env.PORT || 3000;
 const cors = require('cors')
 
+
 app.use(express.json())
 //!enable cors for all routes
 app.use(cors())

@@ -1,15 +1,17 @@
 const jwt  = require("jsonwebtoken");
 
 const isTokenValid = async(req,res,next)=>{
+    console.log('auth',req.headers.authorization)
     const token = req.headers.authorization.split(" ")[1]
+    console.log(token);
      if(!token){
         res.status(401).json({message:"Unauthorized"})
     }
     const tokenData= jwt.verify(token,'loginToken',(err,decoded)=>{
         if(err){
-            throw new Error(err)
-            
+            console.log(err);  
         }else {
+            
             return decoded
         }
     })

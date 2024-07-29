@@ -7,11 +7,12 @@ import Login from './components/Login'
 import store from './redux/store/store'
 import { useSelector } from 'react-redux'
 import AddCategory from './components/Category/AddCategory'
+import CategoriesList from './components/Category/CategoriesList'
 export default function App() {
 
   //! useSelector to get currect states from store
 const userToken=useSelector((state)=>state?.auth)
-console.log(userToken);
+// console.log(userToken);
   return (
 
  <BrowserRouter>
@@ -23,7 +24,9 @@ console.log(userToken);
 <Route path="/" element={<Homepage/>} />
 <Route path="/register" element={<Register/>} />
 <Route path="/login" element={<Login/>} /> 
-<Route path='/add-category' element={<AddCategory/>} />
+<Route path='/add-category' element={<AddCategory/>}/>
+<Route path='/categories' element={<CategoriesList/>}/>
+
  
  </Routes>
  </BrowserRouter>

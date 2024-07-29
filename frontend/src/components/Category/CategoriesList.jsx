@@ -4,11 +4,14 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 
 const CategoriesList = () => {
+  
+  
   return (
     <div className="max-w-md mx-auto my-10 bg-white p-6 rounded-lg shadow-lg">
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">Categories</h2>
       <ul className="space-y-4">
-        {[1, 1]?.map((category) => (
+        {
+        [1, 1]?.map((category) => (
           <li
             key={category?._id}
             className="flex justify-between items-center bg-gray-50 p-3 rounded-md"
