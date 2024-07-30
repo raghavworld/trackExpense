@@ -19,7 +19,7 @@ const userToken=useSelector((state)=>state?.auth)
 
  {userToken.user?<PrivateNavbar/>:<PublicNavbar/>}
 
-<Routes>
+<Routes >
 
 <Route path="/" element={<Homepage/>} />
 <Route path="/register" element={<Register/>} />

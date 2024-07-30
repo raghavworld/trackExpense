@@ -11,18 +11,17 @@ import { SiDatabricks } from "react-icons/si";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import AlertMessage from "../../Templates/Alert/AlertMessage";
-import createCategory from '../../services/category/catgeoryServices'
+import { createCategory } from "../../services/category/catgeoryServices";
 const validationSchema = Yup.object({
   name: Yup.string()
     .required("Category name is required")
     .min(3, "Category name is too short"),
- type:Yup.string()
- .required("Category type is required")
- .oneOf(['income','expense'],"Category type is invalid")
+  type: Yup.string()
+    .required("Category type is required")
+    .oneOf(["income", "expense"], "Category type is invalid"),
 });
 
 const AddCategory = () => {
-
   const navigate = useNavigate();
   const { isError, isPending, isSuccess, error, mutateAsync } = useMutation({
     mutationKey: ["addCategory"],
@@ -35,26 +34,27 @@ const AddCategory = () => {
     },
     validationSchema,
     onSubmit: (values) => {
-      const response = mutateAsync(values).then((data) => {
-        return data
-      }).catch(e=>console.log('errorMut:',e));
-   
-    //  mutateAsync(values).then((data) => {
-    //     console.log(isSuccess);
-    //     isSuccess && setTimeout(() => navigate("/categories"),1000);
-       
-    //     isError && console.log('Error:',error);
+      mutateAsync(values)
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((e) => console.log("errorMut:", e));
 
-    //   }).catch(e=>{
-     
-    //     throw new Error(e)
-    //   })
+      //  mutateAsync(values).then((data) => {
+      //     console.log(isSuccess);
+      //     isSuccess && setTimeout(() => navigate("/categories"),1000);
+
+      //     isError && console.log('Error:',error);
+
+      //   }).catch(e=>{
+
+      //     throw new Error(e)
+      //   })
     },
   });
-        isSuccess && setTimeout(() => navigate("/categories"),1500);
-       
-        isError && console.log('Error:',error);
+  isSuccess && setTimeout(() => navigate("/categories"), 1500);
 
+  isError && console.log("Error:", error);
 
   return (
     <form
