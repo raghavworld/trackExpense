@@ -4,14 +4,14 @@ import * as Yup from "yup";
 import { useMutation } from "@tanstack/react-query";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import { loginApi } from "../services/users/userServices";
-import AlertMessage from "../Templates/Alert/AlertMessage";
-import { useNavigate } from "react-router-dom";
-import {loginAction} from "../redux/slice/authSlice"
+import AlertMessage from "./Alert/AlertMessage";
+import { Navigate, useNavigate } from "react-router-dom";
+import { loginAction } from "../redux/slice/authSlice";
 import { useDispatch } from "react-redux";
 
 const LoginForm = () => {
-const dispatch = useDispatch()
-  const navigate =useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { isError, isPending, isSuccess, mutateAsync, error } = useMutation({
     mutationFn: loginApi,
     mutationKey: ["login"],
@@ -28,13 +28,12 @@ const dispatch = useDispatch()
       password: Yup.string().required("Password is required"),
     }),
     onSubmit: (values) => {
-     
       mutateAsync(values)
         .then((data) => {
-          dispatch(loginAction(data))
+          dispatch(loginAction(data));
           // Save login info to local storage
-          localStorage.setItem('userToken', JSON.stringify(data.token))
-           navigate('/')
+          localStorage.setItem("userToken", JSON.stringify(data.token));
+          navigate("/", { replace: true });
         })
         .catch((e) => {
           console.log(e);
@@ -44,7 +43,6 @@ const dispatch = useDispatch()
 
   return (
     <form
-     
       onSubmit={formik.handleSubmit}
       className="max-w-md mx-auto my-10 bg-white p-6 rounded-xl shadow-lg space-y-6 border border-gray-200"
     >
@@ -69,7 +67,7 @@ const dispatch = useDispatch()
           placeholder="Email"
           className="pl-10 pr-4 py-2 w-full rounded-md border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
         />
-     
+
         {formik.touched.email && formik.errors.email && (
           <span className="text-xs text-red-500">{formik.errors.email}</span>
         )}
@@ -97,7 +95,6 @@ const dispatch = useDispatch()
       >
         Login
       </button>
- 
     </form>
   );
 };

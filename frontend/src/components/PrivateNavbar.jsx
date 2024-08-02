@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { logoutAction } from "../redux/slice/authSlice";
 import { SiAuthy } from "react-icons/si";
 import {useDispatch} from "react-redux"
+import {  useQueryClient } from "@tanstack/react-query";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -15,13 +16,17 @@ function classNames(...classes) {
 
 
  const PrivateNavbar=()=> {
+ 
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  
+  // console.log(useQueryClient);
+  const qClient = useQueryClient()
   const logoutHandler =()=>{
+    qClient.clear()
     dispatch(logoutAction(null))
     localStorage.removeItem('userToken')
     navigate('/')
+    
   
   }
   return (

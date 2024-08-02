@@ -5,7 +5,7 @@ import { hashKey, useMutation } from "@tanstack/react-query";
 import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 import axios from "axios";
 import { RegisterApi } from "../services/users/userServices";
-import AlertMessage from "../Templates/Alert/AlertMessage";
+import AlertMessage from "./Alert/AlertMessage";
 import { useNavigate } from "react-router-dom";
 //Validations
 

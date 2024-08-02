@@ -8,6 +8,8 @@ import store from './redux/store/store'
 import { useSelector } from 'react-redux'
 import AddCategory from './components/Category/AddCategory'
 import CategoriesList from './components/Category/CategoriesList'
+import AuthRouter from './components/AuthRouter/AuthRouter'
+import UpdateCategory from './components/Category/UpdateCategory'
 export default function App() {
 
   //! useSelector to get currect states from store
@@ -24,8 +26,11 @@ const userToken=useSelector((state)=>state?.auth)
 <Route path="/" element={<Homepage/>} />
 <Route path="/register" element={<Register/>} />
 <Route path="/login" element={<Login/>} /> 
-<Route path='/add-category' element={<AddCategory/>}/>
-<Route path='/categories' element={<CategoriesList/>}/>
+<Route path='/add-category' element={
+  <AuthRouter> <AddCategory/></AuthRouter>}/>
+<Route path='/categories' element={
+ <AuthRouter> <CategoriesList/> </AuthRouter> }/>
+ <Route path='update-category/:id' element={<AuthRouter><UpdateCategory/></AuthRouter>}></Route>
 
  
  </Routes>

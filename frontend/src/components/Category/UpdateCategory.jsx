@@ -10,23 +10,55 @@ import {
 import { SiDatabricks } from "react-icons/si";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
+import { updateCategoryService } from "../../services/category/catgeoryServices";
+import AlertMessage from "../Alert/AlertMessage";
+
 
 const validationSchema = Yup.object({
   name: Yup.string()
-    .required("Category name is required")
-    .oneOf(["income", "expense"]),
+  .required("Category name is required"),
   type: Yup.string()
-    .required("Category type is required")
-    .oneOf(["income", "expense"]),
+  .required("Category type is required")
+  .oneOf(["income", "expense"],'Category type is invalid'),
+  
 });
 
+
 const UpdateCategory = () => {
+
+// get id from params 
+const {id}= useParams()
+
+
+
+// muatation update data to database 
+const {mutateAsync,isError,isSuccess,error} = useMutation({
+  mutationKey:['update-category'],
+  mutationFn: updateCategoryService
+})
+
+
+
+
   const formik = useFormik({
     initialValues: {
       type: "",
       name: "",
     },
-    onSubmit: (values) => {},
+    validationSchema,
+    onSubmit: (values) => {
+      const data ={
+        ...values,
+        id
+      }
+      console.log(data);
+// call mutaionFN fto update data
+
+mutateAsync(data).then(data=>console.log(data)).catch(e=>console.log(e))
+
+
+      
+    },
   });
 
   return (
@@ -41,7 +73,7 @@ const UpdateCategory = () => {
         <p className="text-gray-600">Fill in the details below.</p>
       </div>
       {/* Display alert message */}
-      {/* {isError && (
+      {isError && (
         <AlertMessage
           type="error"
           message={
@@ -55,7 +87,7 @@ const UpdateCategory = () => {
           type="success"
           message="Category updated successfully, redirecting..."
         />
-      )} */}
+      )}
       {/* Category Type */}
       <div className="space-y-2">
         <label

@@ -77,12 +77,12 @@ const createCategory = await Category.create({
     //! Delete
     delete: asyncHandler(async(req,res)=>{
         const catId= req.params?.id
+        console.log(catId);
         
-        
-        const TransId = await Transaction.updateMany({category:catId,user:req.user?.id},{category:null})
+        // const TransId = await Transaction.updateMany({category:catId,user:req.user?.id},{category:null})
         const deletedCat =await Category.deleteOne({user:req.user?.id,_id:catId})
 
-        res.json({message:"Category deleted successfully",TransId,deletedCat})
+        res.json({message:"Category deleted successfully",deletedCat})
 
     }) 
 

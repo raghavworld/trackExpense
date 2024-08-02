@@ -10,7 +10,7 @@ import {
 import { SiDatabricks } from "react-icons/si";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import AlertMessage from "../../Templates/Alert/AlertMessage";
+import AlertMessage from "../Alert/AlertMessage";
 import { createCategory } from "../../services/category/catgeoryServices";
 const validationSchema = Yup.object({
   name: Yup.string()
