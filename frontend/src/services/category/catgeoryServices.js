@@ -42,7 +42,7 @@ export const deleteCategory = async (id) => {
 export const updateCategoryService = async ({ name, type, id }) => {
   console.log("incoming update Category Service data:", name, type, id); //debug arguments
 
-  const token = userTokenStorage() || null;
+  const token = userTokenStorage() || null ;
   console.log(token); //debug token
   const response = await axios.put(
     `${BASE_URL}/categories/update/${id}`,

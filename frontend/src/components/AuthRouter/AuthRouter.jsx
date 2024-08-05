@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 const AuthRouter =  ({ children }) => {
   const Token = userTokenStorage();
-  console.log('AuthRouter token: ',Token)
+  // console.log('AuthRouter token: ',Token)
 
   if (!Token) {
     return <Navigate to="/" /> 

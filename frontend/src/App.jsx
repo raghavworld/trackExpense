@@ -10,6 +10,8 @@ import AddCategory from './components/Category/AddCategory'
 import CategoriesList from './components/Category/CategoriesList'
 import AuthRouter from './components/AuthRouter/AuthRouter'
 import UpdateCategory from './components/Category/UpdateCategory'
+import TransactionForm from './components/Transactions/TransactionForm'
+import Dashboard from './Templates/Users/Dashboard'
 export default function App() {
 
   //! useSelector to get currect states from store
@@ -27,11 +29,12 @@ const userToken=useSelector((state)=>state?.auth)
 <Route path="/register" element={<Register/>} />
 <Route path="/login" element={<Login/>} /> 
 <Route path='/add-category' element={
-  <AuthRouter> <AddCategory/></AuthRouter>}/>
+<AuthRouter> <AddCategory/></AuthRouter>}/>
 <Route path='/categories' element={
- <AuthRouter> <CategoriesList/> </AuthRouter> }/>
- <Route path='update-category/:id' element={<AuthRouter><UpdateCategory/></AuthRouter>}></Route>
-
+<AuthRouter> <CategoriesList/> </AuthRouter> }/>
+<Route path='/update-category/:id' element={<AuthRouter><UpdateCategory/></AuthRouter>}></Route>
+<Route path='/add-transaction' element={<AuthRouter><TransactionForm/></AuthRouter>}></Route>
+<Route path='/dashboard' element={<AuthRouter><Dashboard/></AuthRouter>}></Route>
  
  </Routes>
  </BrowserRouter>

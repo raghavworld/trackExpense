@@ -6,7 +6,7 @@ const TransactionChart = () => {
       <h1 className="text-2xl font-bold text-center mb-6">
         Transaction Overview
       </h1>
-      <div style={{ height: "350px" }}> {/* <Doughnut  /> */} </div>
+      <div style={{ height: "350px" }}>{/* <Doughnut  /> */}</div>
     </div>
   );
 };

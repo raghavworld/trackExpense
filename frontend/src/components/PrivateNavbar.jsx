@@ -14,7 +14,6 @@ function classNames(...classes) {
 }
 
 
-
  const PrivateNavbar=()=> {
  
   const navigate = useNavigate()
@@ -55,7 +54,7 @@ function classNames(...classes) {
                 <div className="hidden md:ml-6 md:flex md:space-x-8">
                   <Link
                     to="/"
-                    className="inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900"
+                    className="inline-flex items-center border-b-2 hover:border-indigo-500 focus:border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900"
                   >
                     Expenses Tracker
                   </Link>
@@ -63,31 +62,31 @@ function classNames(...classes) {
                 <div className="hidden md:ml-6 md:flex md:space-x-8">
                   <Link
                     to="/add-transaction"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    className="inline-flex items-center border-b-2 hover:border-indigo-500 focus:border-indigo-500 border-transparent px-1 pt-1 text-sm font-medium text-gray-500  hover:text-gray-700"
                   >
                     Add Transaction
                   </Link>
                   <Link
                     to="/add-category"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    className="inline-flex items-center  hover:border-indigo-500 focus:border-indigo-500  border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
                   >
                     Add Category
                   </Link>
                   <Link
                     to="/categories"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    className="inline-flex  items-center  hover:border-indigo-500 focus:border-indigo-500 border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
                   >
                     Categories
                   </Link>
                   <Link
                     to="/profile"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    className="inline-flex items-center  hover:border-indigo-500 focus:border-indigo-500 border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
                   >
                     Profile
                   </Link>
                   <Link
                     to="/dashboard"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    className="inline-flex items-center  hover:border-indigo-500 focus:border-indigo-500 border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
                   >
                     Dashboard
                   </Link>
@@ -98,7 +97,7 @@ function classNames(...classes) {
                   <button
                     onClick={logoutHandler}
                     type="button"
-                    className="relative m-2 inline-flex items-center gap-x-1.5 rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
+                    className="relative m-2 inline-flex  hover:border-indigo-500 focus:border-indigo-500 items-center gap-x-1.5 rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
                   >
                     <IoLogOutOutline className="h-5 w-5" aria-hidden="true" />
                     <span>Logout</span>
@@ -178,7 +177,7 @@ function classNames(...classes) {
               <Link to="/add-category">
                 <Disclosure.Button
                   as="button"
-                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6"
+                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 focus:border-b-2 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6"
                 >
                   Add Category
                 </Disclosure.Button>
