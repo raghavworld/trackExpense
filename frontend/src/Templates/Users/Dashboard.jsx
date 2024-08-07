@@ -7,7 +7,9 @@ const Dashboard = () => {
   return (
     <>
       <TransactionChart />
-      <TransactionList/>
+      <FilterSection/>
+      {/* <TransactionList/> */}
+      
       
      </>
   );

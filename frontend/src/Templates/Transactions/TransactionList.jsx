@@ -2,15 +2,18 @@ import React from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import {  listTransactionApi } from "../../services/transactions/transactionServices";
-
+import FilterSection from "./FilterSection";
 const TransactionList = () => {
 
-const {data} =useQuery({
-  queryFn: listTransactionApi,
+  
+const {data,isFetched} =useQuery({
+  queryFn: listTransactionApi( ),
   queryKey: ["list-transactions"],
 })
-const transactions = data || []
-console.log(transactions);
+ 
+
+const transactions = data || [];
+
 
 
 
@@ -18,6 +21,7 @@ console.log(transactions);
     <div className="mt-6  bg-lime-200">
       <h3 className="text-xl text-center font-semibold mb-2">Transactions</h3>
       <div className="overflow-x-auto">
+        <FilterSection />
         <table className="min-w-full text-sm divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
@@ -57,7 +61,7 @@ console.log(transactions);
                 </td>
                
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <button className="text-indigo-600 hover:text-indigo-900 mr-3">
+                  <button className="text-indigo-600 hover:text-indigo-900 mr-3 ">
                     <FaEdit />
                   </button>
                   <button className="text-red-600 hover:text-red-900">

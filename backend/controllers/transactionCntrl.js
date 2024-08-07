@@ -1,4 +1,4 @@
-const asyncHandler = require("express-async-handler");
+ const asyncHandler = require("express-async-handler");
 
 const Transaction = require("../model/Transaction");
 const Category = require("../model/Category");
@@ -50,6 +50,8 @@ const TransactionControl = {
 
   //! list
   list: asyncHandler(async (req, res) => {
+    
+    
     const { start, end, name, amountgt, amountlt, type } = req.query;
     if (!req.user?.id) {
       throw new Error("Some error occured while fetching list");
@@ -77,7 +79,7 @@ const TransactionControl = {
     }
     console.log(filters);
 
-    const listTransac = await Transaction.find(filters).sort({ date: -1 }); //? Filters Transaction
+    const listTransac = await Transaction.find(filters).sort(); //? Filters Transaction
     res.json(listTransac);
   }),
 

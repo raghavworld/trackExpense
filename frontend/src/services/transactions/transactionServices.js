@@ -1,4 +1,4 @@
-import { Description } from "@headlessui/react";
+ 
 import userTokenStorage from "../storageServices/local";
 import { BASE_URL } from "../../utils/url";
 import axios from "axios";
@@ -19,26 +19,31 @@ export const addTransactionApi = async ({ type, amount, category }) => {
   return response.data;
 };
 
-export const listTransactionApi = async ({ type, amount, category }) => {
+export const listTransactionApi = async ({ queryKey}) => {
+    const [,reqData] = queryKey
+
+    
+    const params ={
+        // start:reqData.startDate,
+        end:reqData.endDate,
+        type:reqData.type
+    }
+    console.log('reqData: ',params);
+    
   const token = userTokenStorage() || null;
-  console.log("token:", token);
+//   console.log("token:", token);
 
   const response = await axios.get(
     `${BASE_URL}/transactions/list`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
-      },
-    },
-    {
-      username: "hello123",
-      email: "hello@gmail.com",
-      password: "Raman11!!",
-      confirmPassword: "Raman11!!",
+      },params
     }
+  
   );
-  console.log(response.data);
-  return response.data;
+  console.log('response: ',response);
+  return  response.data;
 };
 
 export default { addTransactionApi, listTransactionApi };
