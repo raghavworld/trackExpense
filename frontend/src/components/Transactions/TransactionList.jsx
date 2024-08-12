@@ -1,11 +1,32 @@
 import React from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
-
+import {  listTransactionApi } from "../../services/transactions/transactionServices";
+import {useState} from'react'
 const TransactionList = () => {
+
+  const [startDate,setStartDate]  = useState('')
+  const [endDate,setEndDate]  = useState('')
+  const [type,setType] = useState('')
+
+const senddata = {startDate,endDate,type}
+  
+  const {data,isFetched,isLoading,isError} = useQuery({
+    queryKey:['filterTransactions',senddata],
+    queryFn: listTransactionApi
+  })
+ 
+
+  
+const transactions =  data;
+console.log('transacts:',data);
+
+
+  
+
   return (
     <div className="mt-6">
-      <h3 className="text-xl font-semibold mb-2">Transactions</h3>
+      <h3 className="text-3xl text-center   font-semibold mb-2">Transactions</h3>
       <div className="overflow-x-auto">
         <table className="min-w-full text-sm divide-y divide-gray-200">
           <thead className="bg-gray-50">
@@ -31,8 +52,8 @@ const TransactionList = () => {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {/* {transactions?.map((transaction) => (
-              <tr key={transaction.id}>
+            {transactions?.map((transaction) => (
+              <tr key={transaction._id}>
                 <td className="px-6 py-4 whitespace-nowrap">
                   {new Date(transaction.date).toLocaleDateString()}
                 </td>
@@ -57,7 +78,7 @@ const TransactionList = () => {
                   </button>
                 </td>
               </tr>
-            ))} */}
+            ))}
           </tbody>
         </table>
       </div>
@@ -65,4 +86,4 @@ const TransactionList = () => {
   );
 };
 
-export default TransactionList;
+export default TransactionList

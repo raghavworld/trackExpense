@@ -18,8 +18,8 @@ const transactions = data || [];
 
 
   return (
-    <div className="mt-6  bg-lime-200">
-      <h3 className="text-xl text-center font-semibold mb-2">Transactions</h3>
+    <div className="mt-6  ">
+      <h3 className="text-xl bg-blue-100 text-center font-semibold mb-2">Transactions</h3>
       <div className="overflow-x-auto">
         <FilterSection />
         <table className="min-w-full text-sm divide-y divide-gray-200">
@@ -44,7 +44,7 @@ const transactions = data || [];
             </tr>
           </thead>
            
-          <tbody className="bg-white divide-y  divide-gray-200">
+          <tbody  className="bg-white divide-y divide-gray-200">
             {transactions?.map((transaction) => (
               <tr key={transaction.id}>
                 <td className="px-6 py-4 whitespace-nowrap">

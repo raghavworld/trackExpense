@@ -3,19 +3,44 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { FaTrash, FaEdit } from "react-icons/fa";
 
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
+import { listTransactionApi } from "../../services/transactions/transactionServices";
 
 const FilterSection = () => {
+
+  const [startDate,setStartDate]  = useState('')
+  const [endDate,setEndDate]  = useState('')
+  const [type,setType] = useState('')
+
+const senddata = {startDate,endDate,type}
+  
+  const {data,isFetched,isLoading,isError} = useQuery({
+    queryKey:['filterTransactions',senddata],
+    queryFn: listTransactionApi
+  })
+ 
+
+  
+const transactions =  data;
+console.log('transacts:',data);
+
+
+
+
+
   return (
     <div className="my-4 p-4 shadow-lg rounded-lg bg-white">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         {/* Start Date */}
         <input
+          onChange={(e)=>{setStartDate((prev)=>{return e.target.value})}}
           type="date"
+          placeholder="Start Date"
           name="startDate"
           className="p-2 rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
         />
         {/* End Date */}
         <input
+        onChange={(e)=>{setEndDate((prev)=>{return e.target.value})}}
           type="date"
           name="endDate"
           className="p-2 rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
@@ -23,6 +48,7 @@ const FilterSection = () => {
         {/* Type */}
         <div className="relative">
           <select
+            onChange={(e)=>{setType((prev)=>{return e.target.value})}}
             name="type"
             className="w-full p-2 rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 appearance-none"
           >
@@ -34,10 +60,7 @@ const FilterSection = () => {
         </div>
         {/* Category */}
         <div className="relative">
-          <select
-            name="category"
-            className="w-full p-2 rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 appearance-none"
-          ></select>
+         
           <ChevronDownIcon className="w-5 h-5 absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500" />
         </div>
       </div>
@@ -48,14 +71,14 @@ const FilterSection = () => {
             Filtered Transactions
           </h3>
           <ul className="list-disc pl-5 space-y-2">
-            {/* {transactions?.map((transaction) => (
+            {transactions?.map((transaction) => (
               <li
-                key={transaction.id}
+                key={transaction._id}
                 className="bg-white p-3 rounded-md shadow border border-gray-200 flex justify-between items-center"
               >
                 <div>
                   <span className="font-medium text-gray-600">
-                    {new Date(transaction.date).toLocaleDateString()}
+                    {new Date(transaction.date).toLocaleDateString("en-US")}
                   </span>
                   <span
                     className={`ml-2 px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
@@ -90,7 +113,7 @@ const FilterSection = () => {
                   </button>
                 </div>
               </li>
-            ))} */}
+            ))}
           </ul>
         </div>
       </div>
