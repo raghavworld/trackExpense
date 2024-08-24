@@ -1,1 +1,1 @@
-export const BASE_URL = "https://trackexpense-zap1.onrender.com/";
+export const BASE_URL = "https://trackexpense-zap1.onrender.com";
