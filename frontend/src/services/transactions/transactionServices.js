@@ -19,14 +19,14 @@ export const addTransactionApi = async ({ type, amount, category }) => {
   return response.data;
 };
 
-export const listTransactionApi = async ({ queryKey}) => {
-    const [,reqData] = queryKey
+export const listTransactionApi = async ({queryKey}) => {
+    const [,reqData] = queryKey 
 
     
     const params ={
-        // start:reqData.startDate,
-        end:reqData.endDate,
-        type:reqData.type
+        start:reqData?.startDate,
+        end:reqData?.endDate || '',
+        type:reqData?.type || ''
     }
     console.log('reqData: ',params);
     

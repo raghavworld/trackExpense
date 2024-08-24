@@ -61,7 +61,7 @@ console.log('transacts:',data);
                   {transaction.type}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  {transaction.category?.name}
+                  {transaction?.name}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   ${transaction.amount}
