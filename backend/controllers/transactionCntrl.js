@@ -63,7 +63,7 @@ const TransactionControl = {
       filters.date = { $gte: new Date(start) };
     }
     if (end) {
-      filters.date = { $lt: new Date(end) };
+      filters.date = { $lte: new Date(end) };
     }
     if (name) {
       filters.name = name;
@@ -72,7 +72,7 @@ const TransactionControl = {
       filters.amount = { $gte: amountgt };
     }
     if (amountlt) {
-      filters.amount = { $lt: amountlt };
+      filters.amount = { $lte: amountlt };
     }
     if (type) {
       filters.type = type;
